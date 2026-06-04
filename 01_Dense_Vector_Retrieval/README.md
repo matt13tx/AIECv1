@@ -67,7 +67,7 @@ You will compare embeddings for terms like:
 
 Why is cosine similarity useful for dense vector retrieval?
 
-##### ✅ Answer:
+##### ✅ Answer: Cosine similarity is useful because it lets us compare the meaning of different pieces of text mathematically. It measures how closely related two embeddings are which helps us find the most relevant text even when it doesn’t use the exact same words as the user’s question. 
 
 ---
 
@@ -86,19 +86,19 @@ Run the notebook sections that:
 
 Why is metadata important for a RAG application?
 
-##### ✅ Answer:
+##### ✅ Answer: Metadata contains additional infomration about a chuck i.e. source, file, page num, secion and/or author. This helps with the retrieval part of RAG keeping information clean and organized. 
 
 #### ❓Question #3
 
 What tradeoff do we make when choosing chunk size and chunk overlap?
 
-##### ✅ Answer:
+##### ✅ Answer: The tradeoff is between having just enough context and keeping the retrieval effiecent. If chunks are too small, they may not contain enough information provide a complete answer. If it the chunk becomes too large, retreival becomes less precise and in turn uses more tokens. Chunk overlap helps maintain context between chunks, but too much overlap can create redundant data and increased token usage. 
 
 #### ❓Question #4
 
 What does a similarity score help you understand, and what does it not prove by itself?
 
-##### ✅ Answer:
+##### ✅ Answer: A similarity score tells us how closely related a chunk is to a the user's query based on the given embeddings. A higher score can usually provide a better output, but it doesn't guarantee the chunk has the correct answer. 
 
 ---
 
