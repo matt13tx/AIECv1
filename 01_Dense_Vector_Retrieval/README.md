@@ -113,7 +113,7 @@ Run the notebook's vibe check queries and inspect both:
 
 For the vibe check queries, did the retrieved context seem relevant before generation? Why or why not?
 
-##### ✅ Answer:
+##### ✅ Answer: The retrieved context was for the most part relevant before generation, though there were some chunks that were more useful than others. THe last question, which is unrelated to cat-health, the vector prompt returned as expected, advising there is not information provided in the PDF to answer. 
 
 ---
 
@@ -128,15 +128,17 @@ Improve retrieval quality by changing one or more of:
 
 Document what changed and whether retrieval improved.
 
-##### Settings Changed:
+##### Settings Changed: 
 
--
+- 1. Changed: Chunk size - 500 & Chunk overla - 100
+- 2. Changed: retrieval K to 10
+- 3. Changed: Query wording >> "My cat is throwing up after eating his new food, what should I do?" 
 
 ##### Results:
 
-1.
-2.
-3.
+1. I reduced chunk size and overlap by half, which created smaller chunks. As a result, the output was more precise and the overalp reduced some redundant info. 
+2. By increasing the retrieval K to 10, more document chunks were returned. This could potnentially provide more relevant information but also could create extra noise. 
+3. Updating the wording to a more conversational query. The retrieved context was partially relevant, several chunks were unrelated or barely connected. This demonstrates that wording affects retrieval quality. 
 
 ---
 
