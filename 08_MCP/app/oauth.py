@@ -4,6 +4,7 @@ import time
 
 import aiosqlite
 
+from mcp.server.auth.middleware.auth_context import get_access_token
 from mcp.server.auth.provider import (
     AccessToken,
     AuthorizationCode,
@@ -289,3 +290,12 @@ class CatShopOAuthProvider(OAuthAuthorizationServerProvider):
         )
         row = await cursor.fetchone()
         return row[0] if row else None
+
+    async def get_authenticated_username(self) -> str:
+        token = get_access_token()
+        if token is None:
+            raise ValueError("Not authenticated")
+        username = await self.get_username_for_token(token.token)
+        if username is None:
+            raise ValueError("User not found for token")
+        return username

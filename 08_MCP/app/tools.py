@@ -1,18 +1,10 @@
 import secrets
 
-from mcp.server.auth.middleware.auth_context import get_access_token
-
 from .server import mcp, oauth_provider
 
 
 async def _get_username() -> str:
-    token = get_access_token()
-    if token is None:
-        raise ValueError("Not authenticated")
-    username = await oauth_provider.get_username_for_token(token.token)
-    if username is None:
-        raise ValueError("User not found for token")
-    return username
+    return await oauth_provider.get_authenticated_username()
 
 
 @mcp.tool()
