@@ -119,6 +119,44 @@ async def remove_from_cart(product_id: int) -> dict:
 
 
 @mcp.tool()
+async def update_cart_quantity(product_id: int, quantity: int) -> dict:
+    """Update the quantity of a product in your shopping cart. Set quantity to 0 to remove the item."""
+    if quantity < 0:
+        return {"error": "Quantity must be 0 or greater"}
+
+    username = await _get_username()
+    db = await oauth_provider._get_db()
+
+    cursor = await db.execute("SELECT name FROM products WHERE id = ?", (product_id,))
+    product = await cursor.fetchone()
+    if product is None:
+        return {"error": "Product not found"}
+
+    cursor = await db.execute(
+        "SELECT quantity FROM cart_items WHERE username = ? AND product_id = ?",
+        (username, product_id),
+    )
+    cart_item = await cursor.fetchone()
+    if cart_item is None:
+        return {"error": "Item not in cart"}
+
+    if quantity == 0:
+        await db.execute(
+            "DELETE FROM cart_items WHERE username = ? AND product_id = ?",
+            (username, product_id),
+        )
+        await db.commit()
+        return {"success": True, "message": f"Removed {product[0]} from your cart"}
+
+    await db.execute(
+        "UPDATE cart_items SET quantity = ? WHERE username = ? AND product_id = ?",
+        (quantity, username, product_id),
+    )
+    await db.commit()
+    return {"success": True, "message": f"Updated {product[0]} quantity to {quantity}"}
+
+
+@mcp.tool()
 async def checkout() -> dict:
     """Complete your purchase. Shows order summary and clears the cart."""
     username = await _get_username()

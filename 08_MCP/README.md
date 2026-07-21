@@ -9,7 +9,7 @@
 
 | Session Sheet | Recording | Slides | Repo | Homework | Feedback |
 |:--------------|:----------|:-------|:-----|:---------|:---------|
-| [MCP Servers](../00_Docs/Session_Sheets/17_MCP_Servers_and_A2A/README.md) | | | You are here! | | |
+| [Session 8: MCP](https://github.com/AI-Maker-Space/The-AI-Engineering-Certification-v1.0/tree/main/00_Docs/Modules/08_MCP) |[Recording!](https://us02web.zoom.us/rec/share/rqw5I5hwbOOHy8TrGjnu0IjDJi53ykHb0k897jYfyHqZpgRhUuFP4A18d4NrcEKS.18sNk6Do9XwyaVUy) <br> passcode: `E56&^V+8`| [Session 8 Slides](https://canva.link/k8cixqgkfeghdsn) |You are here! | [Session 8 Assignment](https://forms.gle/TcjjChq38ydMjuqn8) | [Feedback 6/25](https://forms.gle/DvcWDgBXatBWCXqi7) |
 
 ## Useful Resources
 
@@ -137,7 +137,7 @@ Shout out to @AIMakerspace !
 Feel free to reach out if you're curious or would like to collaborate on similar projects! 🤝🔥
 ```
 
-## Submitting Your Homework [OPTIONAL]
+## Submitting Your Homework
 
 Follow these steps to prepare and submit your homework assignment:
 
@@ -153,17 +153,13 @@ Follow these steps to prepare and submit your homework assignment:
 
 Why is OAuth important for MCP servers, and what security considerations should you keep in mind when exposing tools to AI clients?
 
-#### Answer
-
-_(insert your answer here)_
+OAuth is important because MCP tools can allow an AI client to perform real actions, not just generate a response. For instance, in the Cat Shop the AI can add items to a cart or checkout. OAuth makes sure the client is authenticated and authorized before it can access those tools. When exposing tools to AI clients, I would want to limit the tools and permissions to only what the client actually needs, validate the inputs being sent to the tools, and be especially careful with tools that can modify data or perform sensitive actions.
 
 ### Question #2
 
 What is Streamable HTTP transport in MCP, and why might you expose a server publicly with OAuth instead of using a local stdio connection?
 
-#### Answer
-
-_(insert your answer here)_
+Streamable HTTP allows an MCP client to connect to an MCP server over HTTP instead of requiring the client and server to run locally together. In this activity, I exposed my local MCP server through ngrok and connected ChatGPT to it using the public URL. A public server with OAuth makes more sense when you want remote AI clients or multiple applications to access the same MCP server securely. A local stdio connection is better for tools that only need to run on the same machine and do not need to be accessed remotely.
 
 ## Activity 1: Extend the MCP Server
 
